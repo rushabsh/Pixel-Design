@@ -1,69 +1,119 @@
-import Image from "next/image";
+import dynamic from "next/dynamic";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Focused from "@/components/Focused";
+import Services from "@/components/Services";
+import About from "@/components/About";
+import Portfolio from "@/components/Portfolio";
+import Banner from "@/components/Banner";
+import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
+import Footer from "@/components/Footer";
+
+// Optimized Dynamic WebGL Modules with Skeleton Fallbacks for Slow Networks
+const ParticleText = dynamic(() => import("@/components/ParticleText"), {
+  loading: () => (
+    <div style={{ width: "100%", height: 200 }} className="flex items-center justify-center bg-black">
+      <div className="w-3/4 max-w-lg h-14 rounded-2xl skeleton-shimmer-dark" />
+    </div>
+  ),
+});
+
+const Development = dynamic(() => import("@/components/Development"), {
+  loading: () => (
+    <section className="development_dev__ZUMqF" style={{ minHeight: 600, background: "#0d0f11" }}>
+      <div className="w-full h-[600px] skeleton-shimmer-dark flex flex-col items-center justify-center gap-6 p-8">
+        <div className="w-1/3 max-w-xs h-10 rounded-xl bg-white/5" />
+        <div className="w-1/2 max-w-md h-5 rounded-md bg-white/5" />
+      </div>
+    </section>
+  ),
+});
+
+export const metadata = {
+  title: "Pixel Engineers — Creative Design & Full-Stack Development Agency",
+  description:
+    "We create memorable websites, digital experiences, mobile applications, and enterprise software designed and engineered by one elite team.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Pixel Engineers — Creative Design & Development Agency",
+    description:
+      "We create memorable websites, digital experiences, mobile applications, and enterprise software designed and engineered by one elite team.",
+    url: "https://pixelengineers.com",
+    images: [
+      {
+        url: "/images/hero_poster.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Pixel Engineers — Creative Design & Development Agency",
+      },
+    ],
+  },
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main id="main-content" className="main-layout_main__3rK1r">
+      {/* Sticky controls and fullscreen navigation */}
+      <Navbar />
+
+      {/* Hero Section */}
+      <Hero />
+
+      <div style={{ width: "100%", height: 200 }}>
+        <ParticleText
+          text="Data Driven Users Focused"
+          particleSize={2.2}
+          density={4}
+          color="currentCzolor"
+          highlightColor="#0000"
+          highlightMode="motion"
+          shape="circle"
+          intro="gather"
+          scatter={190}
+          gatherDuration={1600}
+          stagger={420}
+          clickBurst
+          burstStrength={1}
+          pointerRepel={42}
+          repelRadius={120}
+          idleDrift={0.8}
+          trigger="mount"
+          fontSize="clamp(3.5rem, 13vw, 9rem)"
+          fontWeight={800}
+          fontFamily="inherit"
+          glow
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.js
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+
+      {/* Focused Marquee */}
+      {/* <Focused /> */}
+
+      {/* 01 — Our Services */}
+      <Services />
+
+      {/* 02 — About Us */}
+      <About />
+
+      {/* {SMART} DEVELOPMENT */}
+      <Development />
+
+      {/* 03 — Our Portfolio */}
+      <Portfolio />
+
+      {/* Numbers don't lie Banner */}
+      <Banner />
+
+      {/* 06 — What Our Clients Say */}
+      <Testimonials />
+
+      {/* Frequently Asked Questions (AEO & On-Page SEO) */}
+      <FAQ />
+
+      {/* Footer */}
+      <Footer />
+    </main>
   );
 }
