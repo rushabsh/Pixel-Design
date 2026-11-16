@@ -5,26 +5,46 @@ import LatticeLoader from "./LatticeLoader";
 
 export default function Preloader() {
   const [status, setStatus] = useState("working");
+  const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
+    let current = 0;
+
+    const timer = setInterval(() => {
+      if (!isMounted) return;
+      if (current < 90) {
+        const inc = Math.max(1, Math.round((90 - current) * 0.12));
+        current = Math.min(90, current + inc);
+        setProgress(current);
+      }
+    }, 35);
 
     const handleAssetsLoaded = () => {
-      setTimeout(() => {
+      clearInterval(timer);
+      const finishTimer = setInterval(() => {
         if (!isMounted) return;
-        setStatus("done");
+        current += 4;
+        if (current >= 100) {
+          current = 100;
+          setProgress(100);
+          clearInterval(finishTimer);
+          setStatus("done");
 
-        setTimeout(() => {
-          if (!isMounted) return;
-          setFadeOut(true);
           setTimeout(() => {
             if (!isMounted) return;
-            setVisible(false);
-          }, 600);
-        }, 500);
-      }, 500);
+            setFadeOut(true);
+            setTimeout(() => {
+              if (!isMounted) return;
+              setVisible(false);
+            }, 600);
+          }, 450);
+        } else {
+          setProgress(current);
+        }
+      }, 15);
     };
 
     if (document.readyState === "complete") {
@@ -33,10 +53,11 @@ export default function Preloader() {
       window.addEventListener("load", handleAssetsLoaded, { once: true });
     }
 
-    const fallbackTimer = setTimeout(handleAssetsLoaded, 3500);
+    const fallbackTimer = setTimeout(handleAssetsLoaded, 3000);
 
     return () => {
       isMounted = false;
+      clearInterval(timer);
       window.removeEventListener("load", handleAssetsLoaded);
       clearTimeout(fallbackTimer);
     };
@@ -66,6 +87,7 @@ export default function Preloader() {
     >
       <LatticeLoader
         status={status}
+        elapsed={progress}
         label="Thinking"
         doneLabel="Done in"
         errorLabel="Failed after"
