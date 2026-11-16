@@ -4,8 +4,79 @@
 @import "./css/ac733fec5634b0c4.css";
 @import "./css/fca17cfbe4359887.css";
 
+/* Centralized Design System Custom Properties */
+:root {
+  /* Colors */
+  --color-primary: #4541f1;
+  --color-primary-hover: #3733d8;
+  --color-brand-blue: #3b48f6;
+  --color-brand-cyan: #2ca8fe;
+  --color-accent-indigo: #6366f1;
+
+  --color-bg-base: #ffffff;
+  --color-bg-dark: #060609;
+  --color-bg-dark-card: #08080c;
+  --color-bg-dark-surface: #0d0f11;
+  --color-bg-dark-elevated: #121218;
+
+  --color-text-primary: #000000;
+  --color-text-secondary: #242424;
+  --color-text-muted: #71717a;
+  --color-text-subtle: #8e8e93;
+  --color-text-light: #ffffff;
+  --color-text-light-muted: #f5f5f5;
+
+  --color-border-light: #e5e7eb;
+  --color-border-dark: #242424;
+  --color-border-dark-subtle: rgba(255, 255, 255, 0.12);
+  --color-border-dark-medium: rgba(255, 255, 255, 0.18);
+
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+
+  /* Typography */
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Freigeist Con", Inter, sans-serif;
+  --font-heading: "Plus Jakarta Sans", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Layout & Spacing */
+  --header-height-desktop: 80px;
+  --header-height-mobile: 64px;
+  --container-max-width: 1440px;
+
+  /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-pill: 40px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --ease-default: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+}
+
+@theme {
+  --color-primary: #4541f1;
+  --color-brand-blue: #3b48f6;
+  --color-brand-cyan: #2ca8fe;
+  --font-display: "Freigeist Con", Inter, sans-serif;
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
+  --radius-pill: 40px;
+}
+
 html {
-  background-color: #ffffff;
+  background-color: var(--color-bg-base);
 }
 
 html.lenis,
@@ -15,14 +86,14 @@ html.lenis body {
 }
 
 body {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
   overflow-x: hidden;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
 }
 
 p, span, a, button, input, textarea, label {
@@ -30,15 +101,15 @@ p, span, a, button, input, textarea, label {
 }
 
 .font-display {
-  font-family: "Freigeist Con", Inter, sans-serif;
+  font-family: var(--font-display);
 }
 
 .font-inter {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
 }
 
 .font-jakarta {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-heading);
 }
 
 /* Skeleton Loading & Shimmer Animation */
@@ -113,6 +184,19 @@ p, span, a, button, input, textarea, label {
     right: 20px !important;
     width: 44px !important;
     height: 44px !important;
+  }
+
+  /* 5. Mobile menu header logo matches desktop */
+  .menu_menu_mobile_logo__KL6VL {
+    width: auto !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .menu_menu_mobile_logo__KL6VL img {
+    height: 36px !important;
+    width: auto !important;
+    object-fit: contain !important;
   }
 }
 

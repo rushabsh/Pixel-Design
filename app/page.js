@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Focused from "@/components/Focused";
 import Services from "@/components/Services";
 import About from "@/components/About";
 import Portfolio from "@/components/Portfolio";
@@ -87,9 +86,6 @@ export default function Home() {
           glow
         />
       </div>
-
-      {/* Focused Marquee */}
-      {/* <Focused /> */}
 
       {/* 01 — Our Services */}
       <Services />

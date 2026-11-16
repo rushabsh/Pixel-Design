@@ -10,8 +10,14 @@ import { useApp } from "@/context/AppContext";
 
 export default function ContactContent() {
   const { toggleForm } = useApp();
-  const [selectedInterest, setSelectedInterest] = useState("Mobile app development");
-  const [formState, setFormState] = useState({ name: "", email: "", message: "" });
+  const [selectedInterest, setSelectedInterest] = useState(
+    "Mobile app development",
+  );
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [submitted, setSubmitted] = useState(false);
 
   const interestOptions = [
@@ -35,7 +41,10 @@ export default function ContactContent() {
   };
 
   return (
-    <div className="contact-page-root" style={{ width: "100%", background: "#fff", color: "#000" }}>
+    <div
+      className="contact-page-root"
+      style={{ width: "100%", background: "#fff", color: "#000" }}
+    >
       {/* ============ HERO SECTION ============ */}
       <PageHero
         titleLine1="BUILDING"
@@ -78,7 +87,16 @@ export default function ContactContent() {
             >
               <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
                 <div style={{ flex: "1 1 220px", minWidth: 0 }}>
-                  <label htmlFor="name" style={{ display: "block", fontSize: "13px", color: "#666", marginBottom: "8px", fontWeight: 500 }}>
+                  <label
+                    htmlFor="name"
+                    style={{
+                      display: "block",
+                      fontSize: "13px",
+                      color: "#666",
+                      marginBottom: "8px",
+                      fontWeight: 500,
+                    }}
+                  >
                     Your name
                   </label>
                   <input
@@ -86,7 +104,9 @@ export default function ContactContent() {
                     type="text"
                     placeholder="Full name"
                     value={formState.name}
-                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormState({ ...formState, name: e.target.value })
+                    }
                     style={{
                       width: "100%",
                       boxSizing: "border-box",
@@ -102,7 +122,16 @@ export default function ContactContent() {
                 </div>
 
                 <div style={{ flex: "1 1 220px", minWidth: 0 }}>
-                  <label htmlFor="email" style={{ display: "block", fontSize: "13px", color: "#666", marginBottom: "8px", fontWeight: 500 }}>
+                  <label
+                    htmlFor="email"
+                    style={{
+                      display: "block",
+                      fontSize: "13px",
+                      color: "#666",
+                      marginBottom: "8px",
+                      fontWeight: 500,
+                    }}
+                  >
                     Email
                   </label>
                   <input
@@ -110,7 +139,9 @@ export default function ContactContent() {
                     type="email"
                     placeholder="you@company.com"
                     value={formState.email}
-                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormState({ ...formState, email: e.target.value })
+                    }
                     style={{
                       width: "100%",
                       boxSizing: "border-box",
@@ -127,8 +158,24 @@ export default function ContactContent() {
               </div>
 
               {/* Interest Selection Pills */}
-              <div style={{ marginTop: "24px", fontSize: "13px", color: "#666", fontWeight: 500 }}>I&apos;m interested in</div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "10px" }}>
+              <div
+                style={{
+                  marginTop: "24px",
+                  fontSize: "13px",
+                  color: "#666",
+                  fontWeight: 500,
+                }}
+              >
+                I&apos;m interested in
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "8px",
+                  marginTop: "10px",
+                }}
+              >
                 {interestOptions.map((opt) => {
                   const isSelected = selectedInterest === opt;
                   return (
@@ -139,7 +186,9 @@ export default function ContactContent() {
                       style={{
                         background: isSelected ? "#000000" : "#ffffff",
                         color: isSelected ? "#ffffff" : "#111111",
-                        border: isSelected ? "1px solid #000000" : "1px solid #d9d9e0",
+                        border: isSelected
+                          ? "1px solid #000000"
+                          : "1px solid #d9d9e0",
                         borderRadius: "999px",
                         padding: "10px 18px",
                         fontSize: "13px",
@@ -156,14 +205,25 @@ export default function ContactContent() {
 
               {/* Project Details Textarea */}
               <div style={{ marginTop: "24px" }}>
-                <label htmlFor="msg" style={{ display: "block", fontSize: "13px", color: "#666", marginBottom: "8px", fontWeight: 500 }}>
+                <label
+                  htmlFor="msg"
+                  style={{
+                    display: "block",
+                    fontSize: "13px",
+                    color: "#666",
+                    marginBottom: "8px",
+                    fontWeight: 500,
+                  }}
+                >
                   Tell us about your project
                 </label>
                 <textarea
                   id="msg"
                   placeholder="What are you building, and what does success look like?"
                   value={formState.message}
-                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                  onChange={(e) =>
+                    setFormState({ ...formState, message: e.target.value })
+                  }
                   style={{
                     width: "100%",
                     boxSizing: "border-box",
@@ -191,9 +251,18 @@ export default function ContactContent() {
                   marginTop: "24px",
                 }}
               >
-                <span style={{ fontSize: "13px", color: "#777", maxWidth: "300px", lineHeight: 1.5 }}>
+                <span
+                  style={{
+                    fontSize: "13px",
+                    color: "#777",
+                    maxWidth: "300px",
+                    lineHeight: 1.5,
+                  }}
+                >
                   {submitted ? (
-                    <span style={{ color: "#16a34a", fontWeight: 600 }}>Message sent! We will reply shortly.</span>
+                    <span style={{ color: "#16a34a", fontWeight: 600 }}>
+                      Message sent! We will reply shortly.
+                    </span>
                   ) : (
                     "We reply to every message, usually within 24 hours."
                   )}
@@ -208,13 +277,37 @@ export default function ContactContent() {
                     <span>Send Message</span>
                   </span>
                   <span className="button_button_icon__mgDpM" data-class="icon">
-                    <span className="button_button_circle__94IGi" data-circle="true"></span>
-                    <svg className="button_button_icon_arrow__sBRHC" data-class="arrow-2" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0 6H12M12 6L7 1M12 6L7 11" data-stroke="true" strokeWidth="1.5"></path>
+                    <span
+                      className="button_button_circle__94IGi"
+                      data-circle="true"
+                    ></span>
+                    <svg
+                      className="button_button_icon_arrow__sBRHC"
+                      data-class="arrow-2"
+                      viewBox="0 0 14 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0 6H12M12 6L7 1M12 6L7 11"
+                        data-stroke="true"
+                        strokeWidth="1.5"
+                      ></path>
                     </svg>
-                    <span className="button_button_svgs__XrFT4" data-class="arrow">
-                      <svg viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 6H12M12 6L7 1M12 6L7 11" data-stroke="true" strokeWidth="1.5"></path>
+                    <span
+                      className="button_button_svgs__XrFT4"
+                      data-class="arrow"
+                    >
+                      <svg
+                        viewBox="0 0 14 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M0 6H12M12 6L7 1M12 6L7 11"
+                          data-stroke="true"
+                          strokeWidth="1.5"
+                        ></path>
                       </svg>
                     </span>
                   </span>
@@ -223,22 +316,47 @@ export default function ContactContent() {
             </form>
 
             {/* Details Column */}
-            <div style={{ flex: "2 1 320px", minWidth: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
+            <div
+              style={{
+                flex: "2 1 320px",
+                minWidth: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
+              }}
+            >
               {/* Email Card */}
               <div
                 style={{
-                  background: "linear-gradient(160deg, #e3d9ff 0%, #a78bfa 100%)",
+                  background:
+                    "linear-gradient(160deg, #e3d9ff 0%, #a78bfa 100%)",
                   borderRadius: "24px",
                   padding: "28px",
                   boxSizing: "border-box",
                   color: "#22104d",
                   transition: "transform 0.2s ease",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-4px)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.transform = "translateY(-4px)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.transform = "translateY(0)")
+                }
               >
-                <div style={{ fontSize: "13px", opacity: 0.75, fontWeight: 600 }}>Email us</div>
-                <div style={{ fontSize: "22px", fontWeight: 600, marginTop: "8px" }}>info@pixelengineers.com</div>
+                <div
+                  style={{ fontSize: "13px", opacity: 0.75, fontWeight: 600 }}
+                >
+                  Email us
+                </div>
+                <div
+                  style={{
+                    fontSize: "22px",
+                    fontWeight: 600,
+                    marginTop: "8px",
+                  }}
+                >
+                  info@pixelengineers.com
+                </div>
               </div>
 
               {/* Address Card */}
@@ -250,11 +368,26 @@ export default function ContactContent() {
                   boxSizing: "border-box",
                   transition: "transform 0.2s ease",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-4px)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.transform = "translateY(-4px)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.transform = "translateY(0)")
+                }
               >
-                <div style={{ fontSize: "13px", color: "#777", fontWeight: 600 }}>Visit us</div>
-                <div style={{ fontSize: "18px", fontWeight: 500, marginTop: "8px", lineHeight: 1.4 }}>
+                <div
+                  style={{ fontSize: "13px", color: "#777", fontWeight: 600 }}
+                >
+                  Visit us
+                </div>
+                <div
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: 500,
+                    marginTop: "8px",
+                    lineHeight: 1.4,
+                  }}
+                >
                   Global Digital Agency &amp; Engineering Studio
                 </div>
               </div>
@@ -269,16 +402,48 @@ export default function ContactContent() {
                   color: "#3d4a00",
                   transition: "transform 0.2s ease",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-4px)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.transform = "translateY(-4px)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.transform = "translateY(0)")
+                }
               >
-                <div style={{ fontSize: "13px", opacity: 0.75, fontWeight: 600 }}>Call us</div>
-                <div style={{ fontSize: "18px", fontWeight: 500, marginTop: "8px" }}>+1 (555) 019-2834</div>
+                <div
+                  style={{ fontSize: "13px", opacity: 0.75, fontWeight: 600 }}
+                >
+                  Call us
+                </div>
+                <div
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: 500,
+                    marginTop: "8px",
+                  }}
+                >
+                  +91 7303018407 / 9561981002
+                </div>
               </div>
 
               {/* Follow Us Card */}
-              <div style={{ background: "#f4f4f6", borderRadius: "24px", padding: "28px", boxSizing: "border-box" }}>
-                <div style={{ fontSize: "13px", color: "#777", marginBottom: "12px", fontWeight: 600 }}>Follow us</div>
+              <div
+                style={{
+                  background: "#f4f4f6",
+                  borderRadius: "24px",
+                  padding: "28px",
+                  boxSizing: "border-box",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "13px",
+                    color: "#777",
+                    marginBottom: "12px",
+                    fontWeight: 600,
+                  }}
+                >
+                  Follow us
+                </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                   <a
                     href="https://linkedin.com"
@@ -344,8 +509,7 @@ export default function ContactContent() {
           {
             step: "03",
             title: "We send a proposal",
-            description:
-              "Scope, approach and a plan to start building.",
+            description: "Scope, approach and a plan to start building.",
           },
         ]}
       />

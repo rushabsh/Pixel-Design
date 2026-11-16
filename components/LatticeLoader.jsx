@@ -39,11 +39,9 @@ const resolvePattern = (pattern, grid) => {
   const max = Math.max(0, ...cells.filter(v => v != null));
   return { cells, loop: pattern.loop ?? max + 4.2, scale: pattern.scale ?? 1, lit: pattern.lit ?? 0.62 };
 };
-const fmt = ds => (ds < 600 ? `${(ds / 10).toFixed(1)}s` : `${Math.floor(ds / 600)}m ${((ds % 600) / 10).toFixed(1)}s`);
-const spoken = ds =>
-  ds < 600
-    ? `${(ds / 10).toFixed(1)} seconds`
-    : `${Math.floor(ds / 600)} minutes ${((ds % 600) / 10).toFixed(1)} seconds`;
+const fmt = val => `${Math.min(100, Math.max(0, Math.round(val)))}%`;
+const spoken = val =>
+  `${Math.min(100, Math.max(0, Math.round(val)))} percent`;
 
 export default function LatticeLoader({
   label = 'Thinking',
@@ -76,10 +74,14 @@ export default function LatticeLoader({
 
   const timerRef = useRef(null);
   const dsRef = useRef(0);
-  const markRef = useRef('done');
-  const mark = status === 'working' ? markRef.current : status;
-  markRef.current = mark;
+  const [mark, setMark] = useState(status === 'working' ? 'done' : status);
   const [announce, setAnnounce] = useState(`${label}, in progress`);
+
+  useEffect(() => {
+    if (status !== 'working') {
+      setMark(status);
+    }
+  }, [status]);
 
   const paint = ds => {
     dsRef.current = ds;
@@ -88,13 +90,19 @@ export default function LatticeLoader({
 
   useIsomorphicLayoutEffect(() => {
     if (elapsed != null) {
-      paint(Math.round(elapsed * 10));
+      paint(elapsed);
       return undefined;
     }
-    if (status !== 'working') return undefined;
-    const startedAt = performance.now();
+    if (status !== 'working') {
+      paint(100);
+      return undefined;
+    }
+    let current = 0;
     paint(0);
-    const id = setInterval(() => paint(Math.floor((performance.now() - startedAt) / 100)), 100);
+    const id = setInterval(() => {
+      current = Math.min(99, current + Math.floor(Math.random() * 4 + 1));
+      paint(current);
+    }, 40);
     return () => clearInterval(id);
   }, [status, elapsed]);
 
@@ -156,7 +164,7 @@ export default function LatticeLoader({
       </span>
       {showTimer ? (
         <span ref={timerRef} className="lattice-loader__timer" aria-hidden="true">
-          0.0s
+          {fmt(elapsed != null ? elapsed : 0)}
         </span>
       ) : null}
       <span className="lattice-loader__sr">{announce}</span>
